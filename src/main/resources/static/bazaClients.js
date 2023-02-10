@@ -15,7 +15,7 @@ function bazaClients() {
                 var cell1 = row.insertCell();
                 cell1.innerHTML = client.id;
                 var cell2 = row.insertCell();
-                cell2.innerHTML = client.address;
+                cell2.innerHTML = listAddress(client).textContent;
                 var cell3 = row.insertCell();
                 cell3.innerHTML =
                     '<button type="button" onclick="getTelephone(' + client.id + ')" class="btn btn-primary btn-sm">телефоны</button>';

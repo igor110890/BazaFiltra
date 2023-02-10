@@ -1,6 +1,8 @@
 package com.example.BazaClients.services;
 
+import com.example.BazaClients.models.bazaclients.Address;
 import com.example.BazaClients.models.bazaclients.Client;
+import com.example.BazaClients.repositories.AddressRepository;
 import com.example.BazaClients.repositories.BazaClientsRepository;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,9 +18,11 @@ import java.util.List;
 public class BazaClientServiceImpl implements BazaClientService {
 
     private final BazaClientsRepository bazaClientsRepository;
+    private final AddressRepository addressRepository;
 
-    public BazaClientServiceImpl(BazaClientsRepository bazaClientsRepository) {
+    public BazaClientServiceImpl(BazaClientsRepository bazaClientsRepository, AddressRepository addressRepository) {
         this.bazaClientsRepository = bazaClientsRepository;
+        this.addressRepository = addressRepository;
     }
 
     @Override
@@ -44,5 +48,10 @@ public class BazaClientServiceImpl implements BazaClientService {
     @Override
     public void delete(Long id) {
         bazaClientsRepository.deleteById(id);
+    }
+
+    @Override
+    public Address findByRole(String address) {
+        return addressRepository.findByNameAddress(address);
     }
 }
