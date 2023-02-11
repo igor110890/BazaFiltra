@@ -2,6 +2,7 @@ package com.example.BazaClients.services;
 
 import com.example.BazaClients.models.Role;
 import com.example.BazaClients.models.User;
+import com.example.BazaClients.models.bazaclients.Client;
 import com.example.BazaClients.repositories.RoleRepository;
 import com.example.BazaClients.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,7 @@ import java.util.Set;
 public class UserServiceImpl implements UserService {
 
     private final PasswordEncoder BCryptPasswordEncoder;
-
     private final RoleRepository roleRepository;
-
     private final UserRepository userRepository;
 
     @Autowired
@@ -33,6 +32,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAll() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public List<Client> findClientAll() {
+        return userRepository.findClientAll();
     }
 
     @Override
@@ -49,7 +53,6 @@ public class UserServiceImpl implements UserService {
     public void update(User user) {
         user.setPassword(BCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
-
     }
 
     @Override

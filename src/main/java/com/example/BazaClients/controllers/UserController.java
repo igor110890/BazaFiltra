@@ -10,7 +10,7 @@ public class UserController {
 
     @GetMapping("admin")
     public String getAdminPage() {
-        return "baza";
+        return "all";
     }
 
     @GetMapping("user")

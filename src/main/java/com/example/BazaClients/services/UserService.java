@@ -2,12 +2,15 @@ package com.example.BazaClients.services;
 
 import com.example.BazaClients.models.Role;
 import com.example.BazaClients.models.User;
+import com.example.BazaClients.models.bazaclients.Client;
 
 import java.util.List;
 import java.util.Set;
 
 public interface UserService {
     public List<User> findAll();
+
+    public List<Client> findClientAll();
 
     public User findById(Long id);
 

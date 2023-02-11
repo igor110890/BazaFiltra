@@ -2,6 +2,8 @@ package com.example.BazaClients.controllers;
 
 import com.example.BazaClients.models.Role;
 import com.example.BazaClients.models.User;
+import com.example.BazaClients.models.bazaclients.Address;
+import com.example.BazaClients.models.bazaclients.Client;
 import com.example.BazaClients.services.UserService;
 import com.example.BazaClients.services.UserServiceImpl;
 import org.springframework.http.HttpStatus;
@@ -19,7 +21,6 @@ public class MyRestAdminController {
 
     public MyRestAdminController(UserServiceImpl userServiceImpl) {
         this.userServiceImpl = userServiceImpl;
-
     }
 
     @GetMapping("/getAuthorizedUser")
@@ -32,6 +33,11 @@ public class MyRestAdminController {
         return ResponseEntity.ok().body(userServiceImpl.findAll());
     }
 
+    @GetMapping("/allClient")
+    public ResponseEntity<List<Client>> getAllClient() {
+        return ResponseEntity.ok().body(userServiceImpl.findClientAll());
+    }
+
     @GetMapping("getUser/{id}")
     public ResponseEntity<User> show(@PathVariable Long id) {
         User user = userServiceImpl.findById(id);
@@ -39,7 +45,7 @@ public class MyRestAdminController {
     }
 
     @PostMapping("/create/{new_Roles}")
-    public ResponseEntity<User> create(@RequestBody User user, @PathVariable (required = false,name="new_Roles") String roleString) {
+    public ResponseEntity<User> create(@RequestBody User user, @PathVariable(required = false, name = "new_Roles") String roleString) {
         Set<Role> setRoleController;
         setRoleController = userServiceImpl.findByRoleSet(roleString);
         user.setRoles(setRoleController);
@@ -48,7 +54,7 @@ public class MyRestAdminController {
     }
 
     @PutMapping("/update/{new_Roles}")
-    public ResponseEntity<?> update(@RequestBody User user, @PathVariable (required = false,name="new_Roles") String roleString) {
+    public ResponseEntity<?> update(@RequestBody User user, @PathVariable(required = false, name = "new_Roles") String roleString) {
         Set<Role> setRoleController;
         setRoleController = userServiceImpl.findByRoleSet(roleString);
         user.setRoles(setRoleController);
